@@ -15,6 +15,3 @@ Build:
 
 >> sudo sh build.sh 
 
-
-Connect through Bash:
->> sudo docker exec -it $JOB bash
