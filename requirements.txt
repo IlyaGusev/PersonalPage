@@ -1,0 +1,5 @@
+Django == 1.8.5
+Pillow == 2.9.0
+sorl-thumbnail == 12.3
+django-sitetree == 1.4.0
+django-multilingual-model

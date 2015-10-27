@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+ <div class="col-md-12 category-main" style="padding-top:40px">
+    {% if category.projects.all %}
+        <div class="col-md-12"> <h2>{{category.name}}</h2></div>
+        <table class="table table-striped">
+            <thead>
+                <th>{% trans "Name" %}</th>
+                <th>{% trans "Kind" %}</th>
+                <th>{% trans "Technologies" %}</th>
+            </thead>
+            <tbody>
+                {% for project in category.projects.all %}
+                <tr>
+                    <td><a href="{% url 'projects:project' category.sname project.sname %}"> {{ project.name }} </a></td>
+                    <td> {{ project.kind }}</td>
+                    <td> {{ project.tech }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h2>{% trans "No projects found." %}</h2>
+    {% endif %}
+</div>
+{% endblock content %}

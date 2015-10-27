@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="padding-top:40px">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <tr><td><h2>{{ entry.header }}</h2></td></tr>
+                {{ entry.text|safe }}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

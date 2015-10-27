@@ -1,0 +1,57 @@
+{% load staticfiles sitetree i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Илья Гусев / Ilya Gusev</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Ilya Gusev">
+        <meta name="google-site-verification" content="zgDC_JybyLZopJzEzwY_PCQhuN2ig3MlqpAuWWnvG60" />
+        {% block js %}
+        {% endblock js %}
+        <script type="text/javascript" src="{% static 'lib/jquery/js/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+        {% block css %}
+        {% endblock css %}
+        <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap-theme.min.css' %}" type="text/css">
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+        <link rel="alternate" href="http://ilyagusev.ru/en" hreflang="en" />
+        <link rel="alternate" href="http://ilyagusev.ru/ru" hreflang="x-default" />
+    </head>
+    <body style="padding-top:60px">
+        <div class="navbar navbar-fixed-top navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                    <a class="navbar-brand" href="{% url 'entries:entry' entry_sname='home' %}">
+                        {% trans "Ilya Gusev" %}
+                    </a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    {% sitetree_menu from "main" include "trunk" template "sitetree/menu_bootstrap3.html" %}
+                    {% if LANGUAGE_CODE == "ru" %}
+                    <form class="navbar-form navbar-right" action="/en">
+                    {% else %}
+                    <form class="navbar-form navbar-right" action="/ru">
+                    {% endif %}
+                        <button type="submit" class="btn btn-info">{% trans "English version" %}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+</html>
+

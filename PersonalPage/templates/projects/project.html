@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+{% load thumbnail i18n %}
+<div style="padding-top:40px">
+    <div class="row">
+        <div class="col-sm-9 project-main">
+            <table class="table">
+            <tr><td><h3>{{ project.name }}</h3></td></tr>
+            <tr><td><p>{{ project.description }}</p></td></tr>
+            </table>
+        </div>
+        <div class="col-sm-3 project-sidebar">
+            <table class="table table-striped">
+                <tr><td width=40%>{% trans "What is it:" %} </td><td>{{project.kind}}</td></p></tr>
+                <tr><td>{% trans "Release date:" %} </td><td>{{project.date}}</td></tr>
+                <tr><td>{% trans "Technologies:" %} </td><td>{{project.tech}}</td></tr>
+                <tr><td colspan=2 align="center"><a href="{{ project.url }}">{% trans "URL" %}</a></td></tr>
+                <tr><td colspan=2 align="center"><a href="{{MEDIA_URL}}{{ project.zip }}">{% trans "Download ZIP" %}</a></td></tr>
+            </table>
+        </div>
+    </div>
+    {% if project.pictures.all %}
+    <div class="row">
+        <div class="col-sm-12 project-screens">
+            <h4>{% trans "Screenshots:" %}</h4>
+            {% for picture in project.pictures.all %}
+                {% thumbnail picture.pic "150x150" crop="center" as pic %}
+                    <a href="{{MEDIA_URL}}{{picture.pic}}"><img src="{{ pic.url }}"></a>
+                {% endthumbnail %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}

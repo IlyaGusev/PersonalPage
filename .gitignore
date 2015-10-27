@@ -1,0 +1,10 @@
+media
+db
+prod_settings.py
+*.o
+*.so
+*.pyc
+*~
+.idea
+PersonalPage/static/games
+PersonalPage/templates/games
